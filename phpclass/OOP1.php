@@ -7,7 +7,8 @@
         protected $role;
         protected $email;
         protected $phone;
-        function __construct(int $uid, string $fname, string $lname, string $role, string $email, string $phone=null)  //just one allowed, optional is null
+
+        function __construct(int $uid, string $fname, string $lname, string $role, string $email, string $phone=null)  //just one allowed, optional is null 생성자
         {
             $this->uid = $uid;  //$this는 PHP에서 현재 객체를 가리키는 키워드
             $this->fname = $fname;
@@ -16,7 +17,7 @@
             $this->email = $email;
             $this->phone = $phone;
         }
-        function display_info():void{
+        function display_info() : void {
             $outputArray = [];
             foreach($this as $key=>$val) {
                 if($key == "uid") continue;
@@ -30,7 +31,8 @@
     }
     if($_SERVER["REQUEST_METHOD"]=="POST"){
         $customer = new User(1,'Jun','Diego','customer','test@mail.com',);
-        print_r($customer->display_info());
+        //print_r($customer->display_info()); 코드 내에 echo가 있어서 제거
+        $customer->display_info();
     } else {
         http_response_code(405);
         echo "Bad Request!";

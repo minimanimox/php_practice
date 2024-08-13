@@ -47,8 +47,11 @@
     
     echo reverse_string($testSentence); // 출력: "olleH"
     
+
+    
     function rcollection(string|array $srcCollection):string|array{
         $output = gettype($srcCollection)[0]=='s'?"":[];
+        
         for($idx=collection_len($srcCollection)-1;$idx>=0;$idx--){
             if(gettype($srcCollection)[0]=='s'){
                 $output .= $srcCollection[$idx];
