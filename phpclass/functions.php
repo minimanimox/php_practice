@@ -48,7 +48,7 @@
     echo reverse_string($testSentence); // 출력: "olleH"
     
 
-    
+
     function rcollection(string|array $srcCollection):string|array{
         $output = gettype($srcCollection)[0]=='s'?"":[];
         
@@ -63,4 +63,18 @@
     }
     print_r(rcollection($testArray));
     
+
+    //개선된 코드
+    function rcollection2(string|array $srcCollection): string|array {
+        $output = is_string($srcCollection) ? "" : [];
+    
+        for ($idx = (is_string($srcCollection) ? strlen($srcCollection) : count($srcCollection)) - 1; $idx >= 0; $idx--) {
+            if (is_string($srcCollection)) {
+                $output .= $srcCollection[$idx];
+            } else {
+                $output[] = $srcCollection[$idx];
+            }
+        }
+        return $output;
+    }
 ?>

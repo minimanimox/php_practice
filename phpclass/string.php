@@ -2,9 +2,10 @@
     $str = "Joao likes Red/Pink Shoes."; //returns the length of a string (characters)
     echo strlen($str)."<br/>";
 
-    echo str_word_count($str)."<br/>"; //단어수 세기
-    print_r(str_word_count($str,2)); //echo 사용불가 array때문에 str_word_count($string, 1) 형식으로 호출하면, 문자열을 단어 단위로 배열로 반환합니다.
+    echo str_word_count($str)."<br/>"; //string에서 단어수 세기
+    print_r(str_word_count($str, 2)); //echo 사용불가 array때문에 str_word_count($string, 1) 형식으로 호출하면, 문자열을 단어 단위로 배열로 반환합니다.
     //returns the number of words if the second parameter is 0. Or returns an array of words if the second parameter is 1
+    //0일때 단어수 1일때 인덱스와 단어 2일때 시작위치와 단어
     echo "<br/>";
 
     echo strpos($str,"Red"); //returns the positon number of first match
