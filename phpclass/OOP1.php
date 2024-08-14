@@ -19,9 +19,9 @@
         }
         function display_info() : void {
             $outputArray = [];
-            foreach($this as $key=>$val) {
+            foreach($this as $key => $val) {
                 if($key == "uid") continue;
-                $outputArray += [$key=>$val];
+                $outputArray += [$key => $val]; //$outputArray[$key] = $val; 이게 더 명확하고 직관적임
             }
             echo json_encode($outputArray);
             // foreach($this as $key=>$val){

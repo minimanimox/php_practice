@@ -2,7 +2,7 @@
     $names = ["Mina", "Victor", "John", "Robinson", "Jun", "Jisun"];
     $names2 = ["Adrian", "Joao", "Diego"];
 
-    echo(print_r($names))."</br>";
+    echo(print_r($names))."</br>"; //$offset 인덱스나 키 등 특정위치
     array_splice($names,2,1); //it changes index numbers /will remove or replace an item/s within an array and will change the index number
     //index number 2 and one letter
     print_r($names);
