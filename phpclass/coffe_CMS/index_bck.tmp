@@ -1,0 +1,35 @@
+<?php
+    try{
+        if($_SERVER["REQUEST_METHOD"]=="POST"){
+            require("./Classes/UserClass.php");
+            require("./Classes/FileClasses.php");
+            if(isset($_FILES["json_file"])){
+                $fileObj = new File("./data");
+                if($fileObj->create_dir("userData",true)){
+                    if($fileObj->upload_file($_FILES["json_file"],"userData")){
+                        echo $_FILES["json_file"]["name"]." uploaded.";
+                    }else{
+                        throw new Exception($_FILES["json_file"]["name"]." not uploaded.",500);
+                    }
+                }
+            }
+            if(isset($_POST["userType"])){
+                $fileObj = new File("./data/userData");
+                $data = json_decode($fileObj->read_file($_POST["userType"].".json"));
+                $outputArray = [];
+                foreach($data as $user){
+                    $usrObj = ($_POST["userType"]=="staff")? new Staff($user->uid,$user->fname,$user->lname,$user->email,$user->jobtitle,$user->salary,$user->hire_date,$user->phone): new Customer($user->uid,$user->fname,$user->lname,$user->email,$user->addr,$user->wallet,$user->phone);
+                    array_push($outputArray,$usrObj->display_info());
+                    echo json_encode($outputArray);
+                }
+            }
+        }else{
+            throw new Exception("Request method is not valid.",406);
+        }
+    }catch(Exception $err){
+        http_response_code($err->getCode());
+        echo ($err->getMessage());
+    }finally{
+
+    }
+?> 
